@@ -4,6 +4,8 @@ Rust is a curly-brace, block-structured expression language. It visually resembl
 
 It supports a mixture of imperative procedural, concurrent actor, object-oriented and pure functional styles. Rust also supports generic programming and metaprogramming, in both static and dynamic styles.
 
+Cargo - the Rust package manager - is included into this build.
+
 A short summary of features
 
 Type system: static, nominal, linear, algebraic, locally inferred
