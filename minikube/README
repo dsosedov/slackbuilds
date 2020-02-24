@@ -2,7 +2,8 @@ minikube
 
 Local Kubernetes, focused on application development & education
 
-As of today bare-metal runs are only supported on systemd enabled systems. You will need either docker (experimental) or virtualbox to run minikube VMs.
+As of today bare-metal runs are only supported on systemd enabled systems.
+You will need either docker (experimental) or virtualbox to run minikube VMs.
 
 Depending on the driver of choice run it as either:
 
