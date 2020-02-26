@@ -22,8 +22,8 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-PRGNAM=cf-cli
 BIN=cf
+PRGNAM=$BIN-cli
 VERSION=${VERSION:-6.49.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -49,6 +49,7 @@ elif [ "$ARCH" = "i686" ]; then
 elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
   LIBDIRSUFFIX="64"
+  mv $CWD/$PRGNAM\_$VERSION\_linux\_x86-64.tgz $CWD/$PRGNAM\_$VERSION\_linux\_$ARCH.tgz
 else
   SLKCFLAGS="-O2"
   LIBDIRSUFFIX=""
@@ -57,11 +58,11 @@ fi
 set -e
 
 rm -rf $PKG
-mkdir -p $TMP $PKG $PKG/usr $OUTPUT
+mkdir -p $TMP $PKG $PKG/usr/{bin,doc} $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
 mkdir -p $PRGNAM-$VERSION/bin
-tar xvf $CWD/$PRGNAM-$VERSION-linux-amd64.tgz -C $PRGNAM-$VERSION/bin
+tar xvf $CWD/$PRGNAM\_$VERSION\_linux\_$ARCH.tgz -C $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -70,9 +71,7 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-chmod 755 bin
-
-mv bin $PKG/usr/
+mv $BIN $PKG/usr/bin/.
 
 find -L $PKG -type d -exec chmod 755 {} \;
 chmod 755 $PKG/usr/bin/*
@@ -81,6 +80,8 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | gr
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mv LICENSE $PKG/usr/doc/$PRGNAM-$VERSION/.
+mv NOTICE $PKG/usr/doc/$PRGNAM-$VERSION/.
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 cat $CWD/$PRGNAM.info > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.info
 
