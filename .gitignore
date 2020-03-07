@@ -1,4 +1,7 @@
-### Global/Linux ###
+# Created by https://www.gitignore.io/api/linux,vim
+# Edit at https://www.gitignore.io/?templates=linux,vim
+
+### Linux ###
 *~
 
 # temporary files which can be created if a process still has a handle open of a deleted file
@@ -13,10 +16,9 @@
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-### Global/Vim ###
+### Vim ###
 # Swap
 [._]*.s[a-v][a-z]
-!*.svg  # comment out if you don't need vector files
 [._]*.sw[a-p]
 [._]s[a-rt-v][a-z]
 [._]ss[a-gi-z]
@@ -28,8 +30,14 @@ Sessionx.vim
 
 # Temporary
 .netrwhist
-*~
+
 # Auto-generated tag files
 tags
+
 # Persistent undo
 [._]*.un~
+
+# Coc configuration directory
+.vim
+
+# End of https://www.gitignore.io/api/linux,vim
