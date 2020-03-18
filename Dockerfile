@@ -30,8 +30,7 @@ RUN heroku --version
 
 WORKDIR /slackbuilds/minikube
 COPY minikube/. .
-# TODO: change to versioned URL
-RUN wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 --no-check-certificate
+RUN wget https://github.com/kubernetes/minikube/releases/download/v1.8.2/minikube-linux-amd64 --no-check-certificate
 RUN chmod +x minikube.SlackBuild && ./minikube.SlackBuild
 RUN installpkg /tmp/minikube*.tgz
 RUN minikube version
