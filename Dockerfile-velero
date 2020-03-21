@@ -1,0 +1,12 @@
+# TODO
+# 2. get download link from .info file
+# 3. verify MD5 sum
+# 4. test 32-bit if applicable
+# 5. catch and register failures smartly
+FROM vbatts/slackware:14.2
+WORKDIR /slackbuilds/velero
+COPY velero/. .
+RUN wget https://github.com/vmware-tanzu/velero/releases/download/v1.3.1/velero-v1.3.1-linux-amd64.tar.gz --no-check-certificate
+RUN chmod +x velero.SlackBuild && ./velero.SlackBuild
+RUN installpkg /tmp/velero*.tgz
+ENTRYPOINT [ "velero", "help" ]
