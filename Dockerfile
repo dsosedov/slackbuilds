@@ -21,11 +21,4 @@ RUN chmod +x heroku-client.SlackBuild && ./heroku-client.SlackBuild
 RUN installpkg /tmp/heroku-client*.tgz
 RUN heroku --version
 
-WORKDIR /slackbuilds/minikube
-COPY minikube/. .
-RUN wget https://github.com/kubernetes/minikube/releases/download/v1.8.2/minikube-linux-amd64 --no-check-certificate
-RUN chmod +x minikube.SlackBuild && ./minikube.SlackBuild
-RUN installpkg /tmp/minikube*.tgz
-RUN minikube version
-
 CMD ["echo", "Success!"]
