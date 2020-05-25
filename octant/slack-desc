@@ -6,14 +6,14 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
       |-----handy-ruler------------------------------------------------------|
-velero: velero (Backup and migrate Kubernetes resources and persistent
-velero: volumes)
-velero:
-velero: Velero is an open source tool to safely backup and restore, perform
-velero: disaster recovery, and migrate Kubernetes cluster resources and
-velero: persistent volumes.
-velero:
-velero:
-velero: Homepage: https://velero.io
-velero: Release date: Apr 3, 2020
-velero:
+octant: octant (a web interface for Kubernetes)
+octant:
+octant: A web-based, highly extensible platform for developers to better 
+octant: understand the complexity of Kubernetes clusters.
+octant:
+octant:
+octant:
+octant:
+octant: Homepage: https://octant.dev
+octant: Release date: Mar 30, 2020
+octant:
