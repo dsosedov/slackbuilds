@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for minikube
+# Slackware build script for crystal-lang
 
 # Copyright 2020 Dmitrii Sosedov, United States
 # All rights reserved.
@@ -22,8 +22,9 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-PRGNAM=minikube
-VERSION=${VERSION:-1.9.2}
+PRGNAM=crystal-lang
+BIN=crystal
+VERSION=${VERSION:-0.34.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -59,8 +60,8 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $PKG/usr $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-mkdir -p $PRGNAM-$VERSION
-mv $CWD/$PRGNAM-linux-amd64 $PRGNAM-$VERSION/minikube
+tar xvf $CWD/$BIN-$VERSION-$BUILD-linux-$ARCH.tar.gz
+mv $BIN-$VERSION-$BUILD $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
 chown -R root:root .
 find -L . \
@@ -69,11 +70,12 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mkdir -p $PKG/usr/bin
-cp $PRGNAM $PKG/usr/bin/.
+chmod 755 {bin,lib,share}
+
+mv {bin,lib,share} $PKG/usr/
 
 find -L $PKG -type d -exec chmod 755 {} \;
-chmod 755 $PKG/usr/bin/*
+chmod 755 $PKG/usr/{bin,lib,share}/*
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
