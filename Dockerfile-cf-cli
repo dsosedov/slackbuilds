@@ -6,7 +6,8 @@
 FROM vbatts/slackware:14.2
 WORKDIR /slackbuilds/cf-cli
 COPY cf-cli/. .
-RUN wget https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.51.0/cf-cli_6.51.0_linux_x86-64.tgz --no-check-certificate
+RUN wget https://s3-us-west-1.amazonaws.com/v7-cf-cli-releases/releases/v7.1.0/cf7-cli_7.1.0_linux_x86-64.tgz --no-check-certificate
+RUN md5sum cf7-cli_7.1.0_linux_x86-64.tgz
 RUN chmod +x cf-cli.SlackBuild && ./cf-cli.SlackBuild
 RUN installpkg /tmp/cf-cli*.tgz
 ENTRYPOINT [ "cf", "version" ]
