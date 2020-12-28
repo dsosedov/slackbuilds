@@ -6,8 +6,8 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
       |-----handy-ruler------------------------------------------------------|
-velero: velero (Backup and migrate Kubernetes resources and persistent
-velero: volumes)
+velero: velero (Backup and migrate Kubernetes resources)
+velero:
 velero:
 velero: Velero is an open source tool to safely backup and restore, perform
 velero: disaster recovery, and migrate Kubernetes cluster resources and
@@ -15,5 +15,5 @@ velero: persistent volumes.
 velero:
 velero:
 velero: Homepage: https://velero.io
-velero: Release date: Apr 3, 2020
+velero: Release date: Oct 21, 2020
 velero:
