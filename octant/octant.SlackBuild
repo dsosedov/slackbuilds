@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Slackware build script for cf-cli
+# Slackware build script for octant
 
-# Copyright 2020 Dmitrii Sosedov, United States
+# Copyright 2021 Dmitrii Sosedov, United States
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -22,9 +22,8 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-BIN=cf
-PRGNAM=$BIN-cli
-VERSION=${VERSION:-6.51.0}
+PRGNAM=octant
+VERSION=${VERSION:-0.16.3}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -40,30 +39,25 @@ TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
-elif [ "$ARCH" = "x86_64" ]; then
+if [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
   LIBDIRSUFFIX="64"
-  mv $CWD/$PRGNAM\_$VERSION\_linux\_x86-64.tgz $CWD/$PRGNAM\_$VERSION\_linux\_$ARCH.tgz
 else
-  SLKCFLAGS="-O2"
-  LIBDIRSUFFIX=""
+  echo "Not supported"
+  exit 1
 fi
 
 set -e
 
 rm -rf $PKG
-mkdir -p $TMP $PKG $PKG/usr/{bin,doc} $OUTPUT
+mkdir -p $TMP $PKG $PKG/usr $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-mkdir -p $PRGNAM-$VERSION/bin
-tar xvf $CWD/$PRGNAM\_$VERSION\_linux\_$ARCH.tgz -C $PRGNAM-$VERSION
+tar xvf $CWD/$PRGNAM\_$VERSION\_Linux-64bit.tar.gz
+mv $PRGNAM\_$VERSION\_Linux-64bit $PRGNAM-$VERSION
 cd $PRGNAM-$VERSION
+mkdir -p bin
+mv $PRGNAM bin
 chown -R root:root .
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
@@ -71,7 +65,9 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-mv $BIN $PKG/usr/bin/.
+chmod 755 bin
+
+mv bin $PKG/usr/
 
 find -L $PKG -type d -exec chmod 755 {} \;
 chmod 755 $PKG/usr/bin/*
@@ -80,8 +76,7 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | gr
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-mv LICENSE $PKG/usr/doc/$PRGNAM-$VERSION/.
-mv NOTICE $PKG/usr/doc/$PRGNAM-$VERSION/.
+mv README.md $PKG/usr/doc/$PRGNAM-$VERSION/.
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 cat $CWD/$PRGNAM.info > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.info
 
