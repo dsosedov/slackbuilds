@@ -6,7 +6,8 @@
 FROM vbatts/slackware:14.2
 WORKDIR /slackbuilds/fly
 COPY fly/. .
-RUN wget https://github.com/concourse/concourse/releases/download/v6.5.1/fly-6.5.1-linux-amd64.tgz --no-check-certificate
+RUN wget https://github.com/concourse/concourse/releases/download/v6.7.4/fly-6.7.4-linux-amd64.tgz --no-check-certificate
 RUN chmod +x fly.SlackBuild && ./fly.SlackBuild
 RUN installpkg /tmp/fly*.tgz
+RUN md5sum fly-6.7.4-linux-amd64.tgz
 ENTRYPOINT [ "fly", "--version" ]
