@@ -6,7 +6,8 @@
 FROM vbatts/slackware:14.2
 WORKDIR /slackbuilds/velero
 COPY velero/. .
-RUN wget https://github.com/vmware-tanzu/velero/releases/download/v1.3.2/velero-v1.3.2-linux-amd64.tar.gz --no-check-certificate
+RUN wget https://github.com/vmware-tanzu/velero/releases/download/v1.5.2/velero-v1.5.2-linux-amd64.tar.gz --no-check-certificate
 RUN chmod +x velero.SlackBuild && ./velero.SlackBuild
 RUN installpkg /tmp/velero*.tgz
+RUN md5sum velero-v1.5.2-linux-amd64.tar.gz
 ENTRYPOINT [ "velero", "help" ]
