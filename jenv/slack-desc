@@ -6,7 +6,7 @@
 # customary to leave one space after the ':' except on otherwise blank lines.
 
     |-----handy-ruler------------------------------------------------------|
-jenv: jenv
+jenv: jenv (Java environment management tool)
 jenv:
 jenv: jEnv is a command line tool to help you forget how to set 
 jenv: the JAVA_HOME environment variable.
