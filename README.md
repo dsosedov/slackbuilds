@@ -9,6 +9,7 @@ These are the SBo builds that I currently maintain.
 - [cf-cli]()
 - [crystal-lang]()
 - [fly]()
+- [jenv]()
 - [heroku-cli]()
 - [minikube]()
 - [octant]()
