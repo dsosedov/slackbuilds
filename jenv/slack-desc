@@ -8,7 +8,7 @@
     |-----handy-ruler------------------------------------------------------|
 jenv: jenv (Java environment management tool)
 jenv:
-jenv: jEnv is a command line tool to help you forget how to set 
+jenv: jEnv is a command line tool to help you forget how to set
 jenv: the JAVA_HOME environment variable.
 jenv:
 jenv:
