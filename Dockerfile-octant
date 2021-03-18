@@ -6,8 +6,8 @@
 FROM vbatts/slackware:14.2
 WORKDIR /slackbuilds/octant
 COPY octant/. .
-RUN wget https://github.com/vmware-tanzu/octant/releases/download/v0.16.3/octant_0.16.3_Linux-64bit.tar.gz --no-check-certificate
+RUN wget https://github.com/vmware-tanzu/octant/releases/download/v0.17.0/octant_0.17.0_Linux-64bit.tar.gz --no-check-certificate
 RUN chmod +x octant.SlackBuild && ./octant.SlackBuild
 RUN installpkg /tmp/octant*.tgz
-RUN md5sum octant_0.16.3_Linux-64bit.tar.gz
+RUN md5sum octant_0.17.0_Linux-64bit.tar.gz
 ENTRYPOINT [ "octant", "version" ]
