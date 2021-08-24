@@ -6,7 +6,7 @@
 FROM vbatts/slackware:14.2
 WORKDIR /slackbuilds/minikube
 COPY minikube/. .
-RUN wget https://github.com/kubernetes/minikube/releases/download/v1.13.0/minikube-linux-amd64 --no-check-certificate
+RUN wget https://github.com/kubernetes/minikube/releases/download/v1.22.0/minikube-linux-amd64 --no-check-certificate
 RUN md5sum minikube-linux-amd64 > md5sum.txt
 RUN chmod +x minikube.SlackBuild && ./minikube.SlackBuild
 RUN installpkg /tmp/minikube*.tgz
